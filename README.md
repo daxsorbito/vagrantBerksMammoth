@@ -1,7 +1,7 @@
 # vagrantBerksMammoth
 Vagrant using berkshelf for meanMammoth
 
-#Pre-requisites
+##Prerequisites
 * Install [vagrant](https://www.vagrantup.com/downloads.html).
 * Install [chef-dk](https://downloads.chef.io/chef-dk/).
 * Add opscode/chefdk/bin to your system PATH. Check [this](http://berkshelf.com/).
