@@ -8,9 +8,9 @@ Vagrant for meanMammoth
 
 ## Set-up
 Use **--recursive** option of **git clone** when cloning this repo so that the submodules would also be initialized
->git clone https://github.com/daxsorbito/vagrantBerksMammoth.git
->cd vagrantBerskMammoth
->berks vendor cookbooks/
+1. git clone https://github.com/daxsorbito/vagrantBerksMammoth.git
+2. cd vagrantBerskMammoth
+3. berks vendor cookbooks/
 
 ## Running
 >vagrant up
