@@ -29,7 +29,7 @@ Vagrant.configure(2) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "../meanMammoth", "/meanMammoth"
+  # config.vm.synced_folder "../meanMammoth", "/meanMammoth"
 
   #Provision chef solo
   config.vm.provision :chef_solo do |chef|
@@ -41,7 +41,7 @@ Vagrant.configure(2) do |config|
     chef.add_recipe 'nginx'
     chef.add_recipe 'vim'
     chef.add_recipe 'nodejs'
-    chef.add_recipe 'mongodb-10gen'
+    chef.add_recipe 'mongodb::mongodb_org_repo'
     chef.json = {
       :redisio   => {
         :bind        => "127.0.0.1",
@@ -63,7 +63,7 @@ Vagrant.configure(2) do |config|
         :pid                => "/var/run/nginx.pid",
         :worker_connections => "1024"
       },
-      'mongodb-10gen' => {
+      :mongodb => {
         :dbpath  => "/var/lib/mongodb",
         :logpath => "/var/log/mongodb",
         :port    => "27017"
