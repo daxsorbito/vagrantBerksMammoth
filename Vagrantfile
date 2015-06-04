@@ -34,6 +34,7 @@ Vagrant.configure(2) do |config|
   #Provision chef solo
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["cookbooks"]
+
     chef.add_recipe "apt"
     chef.add_recipe "build-essential"
     chef.add_recipe 'redisio::install'
@@ -41,33 +42,34 @@ Vagrant.configure(2) do |config|
     chef.add_recipe 'nginx'
     chef.add_recipe 'vim'
     chef.add_recipe 'nodejs'
-    chef.add_recipe 'mongodb::mongodb_org_repo'
+    chef.add_recipe 'mongodb'
+
     chef.json = {
-      :redisio   => {
-        :bind        => "127.0.0.1",
-        :port        => "6379",
-        :config_path => "/etc/redis/redis.conf",
-        :daemonize   => "yes",
-        :timeout     => "300",
-        :loglevel    => "notice"
-      },
-      :git     => {
-        :prefix => "/usr/local"
-      },
-      :nginx   => {
-        :dir                => "/etc/nginx",
-        :log_dir            => "/var/log/nginx",
-        :binary             => "/usr/sbin/nginx",
-        :user               => "www-data",
-        :init_style         => "runit",
-        :pid                => "/var/run/nginx.pid",
-        :worker_connections => "1024"
-      },
-      :mongodb => {
-        :dbpath  => "/var/lib/mongodb",
-        :logpath => "/var/log/mongodb",
-        :port    => "27017"
-      }
+        :redisio   => {
+            :bind               => "127.0.0.1",
+            :port               => "6379",
+            :config_path        => "/etc/redis/redis.conf",
+            :daemonize          => "yes",
+            :timeout            => "300",
+            :loglevel           => "notice"
+        },
+        :git     => {
+            :prefix => "/usr/local"
+        },
+        :nginx   => {
+            :dir                => "/etc/nginx",
+            :log_dir            => "/var/log/nginx",
+            :binary             => "/usr/sbin/nginx",
+            :user               => "www-data",
+            :init_style         => "runit",
+            :pid                => "/var/run/nginx.pid",
+            :worker_connections => "1024"
+        },
+        :mongodb => {
+            :dbpath             => "/var/lib/mongodb",
+            :logpath            => "/var/log/mongodb",
+            :port               => "27017"
+        }
     }
   end
 
