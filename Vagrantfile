@@ -35,9 +35,10 @@ Vagrant.configure(2) do |config|
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["cookbooks"]
 
-    chef.add_recipe "apt"
-    chef.add_recipe "build-essential"
+    chef.add_recipe 'apt'
+    chef.add_recipe 'build-essential'
     chef.add_recipe 'redisio::install'
+    chef.add_recipe 'redisio::enable'
     chef.add_recipe 'git'
     chef.add_recipe 'nginx'
     chef.add_recipe 'vim'
@@ -45,13 +46,10 @@ Vagrant.configure(2) do |config|
     chef.add_recipe 'mongodb'
 
     chef.json = {
-        :redisio   => {
-            :bind               => "127.0.0.1",
-            :port               => "6379",
-            :config_path        => "/etc/redis/redis.conf",
-            :daemonize          => "yes",
-            :timeout            => "300",
-            :loglevel           => "notice"
+        :redisio => {
+            'servers' => [
+                {'port' => '6379'},
+            ]
         },
         :git     => {
             :prefix => "/usr/local"
@@ -72,5 +70,4 @@ Vagrant.configure(2) do |config|
         }
     }
   end
-
 end
