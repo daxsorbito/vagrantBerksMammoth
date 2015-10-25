@@ -43,7 +43,6 @@ Vagrant.configure(2) do |config|
     chef.add_recipe 'nginx'
     chef.add_recipe 'vim'
     chef.add_recipe 'nodejs'
-    chef.add_recipe 'mongodb'
 
     chef.json = {
         :redisio => {
@@ -62,12 +61,10 @@ Vagrant.configure(2) do |config|
             :init_style         => "runit",
             :pid                => "/var/run/nginx.pid",
             :worker_connections => "1024"
-        },
-        :mongodb => {
-            :dbpath             => "/var/lib/mongodb",
-            :logpath            => "/var/log/mongodb",
-            :port               => "27017"
         }
     }
   end
+
+  config.vm.provision :shell, path: "provision-mongo.sh"
+
 end
